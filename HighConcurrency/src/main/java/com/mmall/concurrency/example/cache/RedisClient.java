@@ -37,4 +37,17 @@ public class RedisClient {
             }
         }
     }
+
+
+    public void incr(String key) throws Exception {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            jedis.incr(key);
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+    }
 }
